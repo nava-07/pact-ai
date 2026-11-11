@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pact AI — Delegate the Plan. Own the Payment.</title>
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b12;--s1:#0c1320;--s2:#111b2c;--line:#1c2a3f;--tx:#e8edf5;--mu:#8393aa;--ac:#2ee59d;--acd:#0f3d2e;--cy:#5cc8ff;--wa:#f4b942;--bd:#ff6b6b;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 'Hanken Grotesk',system-ui,sans-serif;min-height:100vh}
+h1,h2,h3{font-family:'Instrument Serif',Georgia,serif;font-weight:400;margin:0;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+.mono,.num{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:transparent;padding:9px 16px;border-radius:8px;font-weight:500;transition:.15s}
+.btn:hover{border-color:var(--mu)}
+.btn.p{background:var(--ac);color:#04140d;border-color:var(--ac)}
+.btn.p:hover{background:#5df0b8}
+.btn.sm{padding:5px 11px;font-size:13px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Instrument Serif',serif;font-size:24px}
+.logo i{width:22px;height:22px;border:2px solid var(--ac);border-radius:6px 6px 6px 0;display:block}
+.nav nav{display:flex;gap:26px;color:var(--mu);font-size:14px}.nav nav a:hover{color:var(--tx)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:72px 0 88px}
+.hero h1{font-size:clamp(44px,6.4vw,78px);line-height:1}
+.hero h1 em{color:var(--ac);font-style:italic}
+.lede{color:var(--mu);font-size:18px;max-width:30em;margin:22px 0 30px}
+.eyebrow{font:500 12px 'IBM Plex Mono',monospace;color:var(--ac);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:20px}
+.demo .row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line)}
+.steps{display:flex;gap:6px;margin-top:18px}.steps span{flex:1;height:3px;background:var(--line);border-radius:2px;transition:.4s}.steps span.on{background:var(--ac)}
+.badge{display:inline-block;font:500 11px 'IBM Plex Mono',monospace;padding:3px 8px;border-radius:5px;border:1px solid var(--line);color:var(--mu);letter-spacing:.04em;white-space:nowrap}
+.b-APPROVED,.b-COMPLETED{color:var(--ac);border-color:#17604a;background:var(--acd)}
+.b-PENDING_APPROVAL,.b-REAPPROVAL_REQUIRED,.b-PAYMENT_PENDING{color:var(--wa);border-color:#5b4515;background:#2a2008}
+.b-DRAFT{color:var(--mu)}
+section.blk{padding:72px 0;border-top:1px solid var(--line)}
+section.blk h2{font-size:clamp(32px,4vw,48px);max-width:16em;margin-bottom:36px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.flow div{padding:22px 18px;border-right:1px solid var(--line);background:var(--s1)}.flow div:last-child{border:0}
+.flow b{display:block;font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;margin:8px 0 4px}.flow small{color:var(--mu)}
+.flow .mono{color:var(--ac);font-size:12px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cols .card h3{font-size:24px;margin-bottom:8px}.cols p,.mu{color:var(--mu);margin:0}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mu);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer nav{display:flex;gap:20px}
+/* app */
+.shell{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+.side{border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px;background:var(--s1)}
+.side .logo{padding:0 10px 22px}
+.side a{display:flex;gap:11px;align-items:center;padding:9px 10px;border-radius:8px;color:var(--mu)}
+.side a:hover{color:var(--tx);background:var(--s2)}.side a.on{color:var(--tx);background:var(--s2);box-shadow:inset 2px 0 var(--ac)}
+.side .who{margin-top:auto;padding:10px;font-size:13px;color:var(--mu);border-top:1px solid var(--line)}
+.main{padding:34px 40px 60px;max-width:1040px;width:100%}
+.main h1{font-size:40px;margin-bottom:4px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.demoflag{font:12px 'IBM Plex Mono',monospace;color:var(--wa);border:1px solid #5b4515;border-radius:5px;padding:3px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.stat small{color:var(--mu);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.stat .num{font-size:26px;display:block;margin-top:6px}
+.bar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--s2);margin:14px 0 10px;gap:2px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--mu)}.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+table{width:100%;border-collapse:collapse}th{font:500 11px 'IBM Plex Mono',monospace;color:var(--mu);text-align:left;letter-spacing:.08em;text-transform:uppercase;padding:0 10px 10px}
+td{padding:12px 10px;border-top:1px solid var(--line);vertical-align:middle}
+.scroll{overflow-x:auto}
+.ex{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.ex:first-child{border-top:0}.ex h3{font-size:22px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.note{border-left:2px solid var(--cy);background:#0a1a26;padding:14px 16px;border-radius:0 8px 8px 0;margin-bottom:18px}
+.note .mono{color:var(--cy);font-size:12px;margin-bottom:6px;display:block}
+textarea,input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--tx);padding:11px 12px;font:inherit}
+textarea{min-height:110px;resize:vertical}
+.pl{display:grid;grid-template-columns:1fr 130px 30px;gap:10px;margin-bottom:10px}
+.mdl{position:fixed;inset:0;background:#02050acc;display:grid;place-items:center;padding:20px;z-index:50}
+.mdl .card{max-width:440px;width:100%;background:var(--s2)}.mdl h3{font-size:26px;margin-bottom:8px}
+.toast{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--s2);border:1px solid var(--ac);padding:11px 16px;border-radius:8px;z-index:60;max-width:80vw}
+.err{color:var(--bd);font-size:13px;margin-top:8px}
+.tabs{display:none}
+@media(max-width:860px){
+.hero,.two{grid-template-columns:1fr}.hero{padding:40px 0 56px}.flow{grid-template-columns:1fr}.flow div{border-right:0;border-bottom:1px solid var(--line)}
+.cols{grid-template-columns:1fr}.nav nav{display:none}.stats{grid-template-columns:1fr 1fr}
+.shell{grid-template-columns:1fr}.side{display:none}.main{padding:24px 18px 96px}
+.tabs{display:flex;position:fixed;left:0;right:0;bottom:0;background:var(--s1);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:40}
+.tabs a{flex:1;text-align:center;font-size:12px;color:var(--mu);padding:6px 0}.tabs a.on{color:var(--ac)}
+.ex{grid-template-columns:1fr auto}.ex .acts{grid-column:1/-1;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const $=c=>'$'+(c/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const ST={DRAFT:'Draft',PENDING_APPROVAL:'Pending approval',APPROVED:'Approved',PAYMENT_PENDING:'Payment pending',COMPLETED:'Completed',REAPPROVAL_REQUIRED:'Re-approval required'};
+const S={title:'Goa weekend · 5 people',budget:50000,n:5,last:null,
+ex:[{id:1,name:'Transport',amt:20000,st:'APPROVED',app:20000},{id:2,name:'Accommodation',amt:20000,st:'PENDING_APPROVAL'},{id:3,name:'Food & activities',amt:6000,st:'DRAFT'},{id:4,name:'Emergency reserve',amt:4000,st:'DRAFT'}],
+log:[{t:'09:12',e:'Plan saved',x:'Transport',a:20000,r:'—'},{t:'09:14',e:'Approved by owner',x:'Transport',a:20000,r:'—'}]};
+const tot=(f)=>S.ex.filter(f||(()=>1)).reduce((s,e)=>s+e.amt,0);
+const ic=n=>'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+({home:'<path d="M3 11l9-8 9 8v10H3z"/>',plan:'<path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>',pact:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',ledger:'<path d="M4 6h16M4 12h16M4 18h10"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'})[n]+'</svg>';
+const nav=[['app','Dashboard','home'],['plan','Plan','plan'],['pact','Pact','pact'],['ledger','Ledger','ledger']];
+const shell=(r,body)=>'<div class="shell"><aside class="side"><a class="logo" href="#/"><i></i>Pact AI</a>'+nav.map(n=>'<a href="#/'+n[0]+'" class="'+(r==n[0]?'on':'')+'">'+ic(n[2])+n[1]+'</a>').join('')+'<div class="who">Signed in as Asha R.<br><span class="mono" style="font-size:12px">owner · local demo mode</span></div></aside><main class="main">'+body+'</main></div><nav class="tabs">'+nav.map(n=>'<a href="#/'+n[0]+'" class="'+(r==n[0]?'on':'')+'">'+ic(n[2])+'<br>'+n[1]+'</a>').join('')+'</nav>';
+const badge=s=>'<span class="badge b-'+s+'">'+ST[s]+'</span>';
+const flag='<span class="demoflag">DEMO DATA · no real payments</span>';
+
+function landing(){
+return '<div class="wrap"><div class="nav"><a class="logo" href="#/"><i></i>Pact AI</a><nav><a href="#how">How it works</a><a href="#consent">Consent</a><a href="#trust">Security</a></nav><a class="btn sm" href="#/login">Sign in</a></div>'+
+'<div class="hero"><div><div class="eyebrow">Consent-aware agentic payments</div><h1>Your Goals. Your Rules. <em>Your Payments.</em></h1><p class="lede">Describe a trip or a shared purchase in plain words. Pact AI drafts the budget; your rules decide what can be paid, and only people you authorise can release money.</p><a class="btn p" href="#/plan">Draft a plan '+ic('arrow')+'</a> <a class="btn" href="#/app" style="margin-left:6px">See a sample pact</a></div>'+
+'<div class="card demo"><div class="mu mono" style="font-size:12px">Goa weekend · 5 people</div><div class="row"><span>Transport</span><span class="num" id="dA">$200.00</span></div><div class="row"><span>Status</span><span id="dS">'+badge('DRAFT')+'</span></div><div class="row" style="border:0"><span class="mu">Remaining</span><span class="num mu">$300.00</span></div><div class="steps" id="dP"><span></span><span></span><span></span><span></span><span></span></div></div></div></div>'+
+'<section class="blk" id="how"><div class="wrap"><h2>The plan is a suggestion. The payment is a decision.</h2><div class="flow">'+[['AI','Drafts the plan from your words'],['Policy check','Budget and role rules run on the server'],['Approval','The owner signs the exact amount'],['PayPal','Server-created order, buyer approves'],['Ledger','Append-only record of every step']].map((s,i)=>'<div><span class="mono">0'+(i+1)+'</span><b>'+s[0]+'</b><small>'+s[1]+'</small></div>').join('')+'</div></div></section>'+
+'<section class="blk" id="consent"><div class="wrap"><h2>Change the number, and the consent resets.</h2><div class="cols"><div class="card"><h3>Versioned approvals</h3><p>An approval covers one amount, one currency, one purpose. Edit any of them and the expense returns for re-approval.</p></div><div class="card"><h3>What changed?</h3><p>Every revision shows old and new amounts and the effect on what’s left, calculated exactly, then explained in plain language.</p></div><div class="card"><h3>AI stays advisory</h3><p>The model can propose and explain. It can’t approve, raise a limit, or move money.</p></div></div></div></section>'+
+'<section class="blk" id="trust"><div class="wrap"><h2>Built so the audit trail can be trusted.</h2><div class="cols"><div class="card"><h3>Amounts in minor units</h3><p>No floating-point money. Totals add up to the cent.</p></div><div class="card"><h3>Verified payments only</h3><p>A redirect isn’t proof. Orders complete after a server capture and signed webhook.</p></div><div class="card"><h3>Append-only history</h3><p>Events can be added, never rewritten, and are visible to every participant.</p></div></div><p style="margin-top:40px"><a class="btn p" href="#/app">Try the interactive demo '+ic('arrow')+'</a></p></div></section>'+
+'<footer><div class="wrap"><span class="logo" style="font-size:20px"><i></i>Delegate the Plan. Own the Payment.</span><nav><a href="#/app">Documentation</a><a href="#/app">Privacy</a><a href="#/app">Terms</a></nav></div></footer>';}
+
+function dash(){
+const pl=tot(),pd=tot(e=>e.st=='COMPLETED'),pp=tot(e=>e.st=='APPROVED'||e.st=='PAYMENT_PENDING'),rem=S.budget-pl,un=pl-pd-pp;
+const seg=(v,c)=>'<span style="flex:'+v+';background:'+c+'"></span>';
+return shell('app','<div class="head"><div><h1>Dashboard</h1><span class="mu">'+S.title+'</span></div>'+flag+'</div>'+
+'<div class="stats">'+[['Budget',$(S.budget)],['Planned',$(pl)],['Paid (captured)',$(pd)],['Remaining',$(rem)]].map(s=>'<div class="card stat"><small>'+s[0]+'</small><span class="num">'+s[1]+'</span></div>').join('')+'</div>'+
+'<div class="card" style="margin-bottom:18px"><small class="mu">Where the budget stands</small><div class="bar">'+seg(pd,'var(--ac)')+seg(pp,'var(--cy)')+seg(un,'#34476a')+seg(Math.max(rem,0),'transparent')+'</div><div class="legend"><span><i style="background:var(--ac)"></i>Paid '+$(pd)+'</span><span><i style="background:var(--cy)"></i>Approved, unpaid '+$(pp)+'</span><span><i style="background:#34476a"></i>Not yet approved '+$(un)+'</span></div></div>'+
+'<div class="two"><div class="card"><h3 style="font-size:24px;margin-bottom:10px">Needs your attention</h3>'+(S.ex.filter(e=>e.st=='PENDING_APPROVAL'||e.st=='REAPPROVAL_REQUIRED').map(e=>'<div class="ex"><div><b>'+e.name+'</b><div class="mu num">'+$(e.amt)+'</div></div>'+badge(e.st)+'<a class="btn sm" href="#/pact">Review</a></div>').join('')||'<p class="mu">Nothing waiting. Quiet is good.</p>')+'</div><div class="card"><h3 style="font-size:24px;margin-bottom:10px">Recent activity</h3>'+S.log.slice(-4).reverse().map(l=>'<div class="ex" style="grid-template-columns:1fr auto;padding:10px 0"><span>'+l.e+'<div class="mu" style="font-size:13px">'+l.x+'</div></div><span class="mono mu" style="font-size:12px">'+l.t+'</span></div>').join('')+'</div></div>');}
+
+function pact(){
+const rem=S.budget-tot();
+return shell('pact','<div class="head"><div><h1>'+S.title+'</h1><span class="mu">Owner: Asha R. · Budget '+$(S.budget)+' · Remaining <span class="num">'+$(rem)+'</span></span></div>'+flag+'</div>'+
+(S.last?'<div class="note"><span class="mono">WHAT CHANGED?</span><b>'+S.last.name+'</b>: '+$(S.last.p)+' → '+$(S.last.n)+' ('+(S.last.n>S.last.p?'+':'−')+$(Math.abs(S.last.n-S.last.p))+'). Remaining budget moves from '+$(S.last.rp)+' to '+$(S.last.rn)+'. '+(S.last.re?'The earlier approval no longer applies, so the owner must approve this amount again before payment.':'No approval had been given, so nothing else is affected.')+' <span class="mu">(Figures are computed exactly; AI wording is not connected in this preview.)</span></div>':'')+
+'<div class="card">'+S.ex.map(e=>'<div class="ex"><div><h3>'+e.name+'</h3><span class="mu">Estimate, not a supplier quote</span></div><div style="text-align:right"><div class="num" style="font-size:18px">'+$(e.amt)+'</div>'+badge(e.st)+'</div><div class="acts">'+
+(e.st!='COMPLETED'?'<button class="btn sm" data-a="edit" data-i="'+e.id+'">Edit amount</button>':'')+
+(e.st=='DRAFT'?'<button class="btn sm" data-a="submit" data-i="'+e.id+'">Submit for approval</button>':'')+
+((e.st=='PENDING_APPROVAL'||e.st=='REAPPROVAL_REQUIRED')?'<button class="btn sm p" data-a="approve" data-i="'+e.id+'">Approve '+$(e.amt)+'</button>':'')+
+(e.st=='APPROVED'?'<button class="btn sm p" data-a="pay" data-i="'+e.id+'">Pay with PayPal</button>':'')+'</div></div>').join('')+'</div>'+shares());}
+
+function ledger(){
+return shell('ledger','<div class="head"><div><h1>Ledger</h1><span class="mu">Append-only. Every action is recorded.</span></div>'+flag+'</div><div class="card scroll"><table><tr><th>Time</th><th>Event</th><th>Expense</th><th>Amount</th><th>PayPal ref</th></tr>'+S.log.slice().reverse().map(l=>'<tr><td class="mono">'+l.t+'</td><td>'+l.e+'</td><td>'+l.x+'</td><td class="num">'+$(l.a)+'</td><td class="mono mu">'+l.r+'</td></tr>').join('')+'</table></div>');}
+
+let L='in';
+function loginp(){const up=L=='up';return '<div class="wrap" style="max-width:420px;padding-top:12vh"><a class="logo" href="#/"><i></i>Pact AI</a><h1 style="font-size:40px;margin:28px 0 6px">'+(up?'Create your account':'Welcome back')+'</h1><p class="mu" style="margin-bottom:20px">'+(up?'Start a pact in a minute.':'Sign in to your pacts.')+'</p><div class="card">'+(up?'<label class="mu">Name</label><input id="ln" autocomplete="name" style="margin:6px 0 14px">':'')+'<label class="mu">Email</label><input id="le" type="email" autocomplete="email" style="margin:6px 0 14px"><label class="mu">Password</label><input id="lp" type="password" autocomplete="'+(up?'new':'current')+'-password" style="margin:6px 0 6px"><div class="err" id="lr"></div><p style="margin:16px 0 0"><button class="btn p" style="width:100%;justify-content:center" data-a="login">'+(up?'Create account':'Sign in')+'</button></p></div><p class="mu" style="margin-top:16px;font-size:13px">'+(up?'Have an account? ':'New here? ')+'<a href="#/login" data-a="mode" style="color:var(--ac)">'+(up?'Sign in':'Create an account')+'</a></p><span class="demoflag" style="display:inline-block;margin-top:14px">LOCAL DEMO MODE · no real authentication</span></div>';}
+function shares(){return '<div class="card" style="margin-top:18px"><h3 style="font-size:24px;margin-bottom:4px">Member shares</h3><p class="mu" style="margin-bottom:10px">Each member pays their own share through their own PayPal checkout. Pact AI doesn’t split one payment between recipients.</p>'+['Asha R. (owner)','Dev','Meera','Kabir','Isha'].map((n,i)=>'<div class="ex" style="grid-template-columns:1fr auto auto;padding:10px 0"><span>'+n+'</span><span class="num">'+$(Math.round(S.budget/5))+'</span><span class="badge '+(i?'':'b-COMPLETED')+'">'+(i?'Awaiting payment':'Paid (demo)')+'</span></div>').join('')+'</div>';}
+let PLAN=null;
+function planp(){
+return shell('plan','<div class="head"><div><h1>Plan generator</h1><span class="mu">Describe it. Then edit every line before saving.</span></div></div><div class="card"><textarea id="pr">Organise a two-day college trip for five people with a budget of $500. Prioritise transport and accommodation, keep $50 for emergencies, and require approval before every payment.</textarea><p style="margin:14px 0 0"><button class="btn p" data-a="gen">Generate plan</button></p></div>'+
+(PLAN?'<div class="card" style="margin-top:18px"><div class="note"><span class="mono">LOCAL DEMO GENERATOR</span>Gemini isn’t connected in this preview, so this plan is built by a simple rule, not a live AI call. All amounts are estimates, not supplier quotes.</div>'+PLAN.ex.map((e,i)=>'<div class="pl"><input value="'+e.name+'" data-f="n" data-i="'+i+'"><input class="num" value="'+(e.amt/100)+'" data-f="a" data-i="'+i+'" inputmode="decimal"><button class="btn sm" data-a="rm" data-i="'+i+'" aria-label="Remove">×</button></div>').join('')+
+'<button class="btn sm" data-a="add">+ Add expense</button><p class="mu">Budget '+$(PLAN.b)+' · Allocated <span class="num">'+$(PLAN.ex.reduce((s,e)=>s+e.amt,0))+'</span></p>'+(PLAN.ex.reduce((s,e)=>s+e.amt,0)>PLAN.b?'<div class="err">Allocations exceed the budget by '+$(PLAN.ex.reduce((s,e)=>s+e.amt,0)-PLAN.b)+'. Reduce a line to save.</div>':'')+
+'<p><button class="btn p" data-a="save" '+(PLAN.ex.reduce((s,e)=>s+e.amt,0)>PLAN.b?'disabled':'')+'>Save as pact</button></p></div>':''));}
+
+function gen(){
+const t=document.getElementById('pr').value,m=t.match(/\$\s?([\d,]+)/),b=(m?parseInt(m[1].replace(/,/g,'')):500)*100;
+const f=t.match(/five|\b(\d+)\s+(people|friends)/i);const em=(t.match(/keep\s+\$\s?(\d+)/i)||[])[1];const r=em?em*100:Math.round(b*.1);
+const rest=b-r;PLAN={b,ex:[{name:'Transport',amt:Math.round(rest*.45)},{name:'Accommodation',amt:Math.round(rest*.4)},{name:'Food & activities',amt:rest-Math.round(rest*.45)-Math.round(rest*.4)},{name:'Emergency reserve',amt:r}]};render();}
+
+function modal(h){const d=document.createElement('div');d.className='mdl';d.innerHTML='<div class="card" role="dialog" aria-modal="true">'+h+'</div>';d.onclick=e=>{if(e.target==d)d.remove()};document.body.appendChild(d);return d;}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600);}
+const now=()=>new Date().toTimeString().slice(0,5);
+const lg=(e,x,a,r)=>S.log.push({t:now(),e,x:x.name,a:a,r:r||'—'});
+const ex=i=>S.ex.find(e=>e.id==i);
+
+document.addEventListener('click',ev=>{
+const b=ev.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,e=ex(b.dataset.i);
+if(a=='mode'){L=L=='in'?'up':'in';return render();}
+if(a=='login'){const em=document.getElementById('le').value,pw=document.getElementById('lp').value,er=document.getElementById('lr');if(!/^\S+@\S+\.\S+$/.test(em))return er.textContent='Enter a valid email address.';if(pw.length<8)return er.textContent='Password must be at least 8 characters.';location.hash='#/app';return;}
+if(a=='gen')return gen();
+if(a=='add'){PLAN.ex.push({name:'New expense',amt:0});return render();}
+if(a=='rm'){PLAN.ex.splice(b.dataset.i,1);return render();}
+if(a=='save'){S.ex=PLAN.ex.map((x,i)=>({id:i+1,name:x.name,amt:x.amt,st:'DRAFT'}));S.budget=PLAN.b;S.last=null;S.log=[{t:now(),e:'Plan saved',x:'All expenses',a:PLAN.b,r:'—'}];location.hash='#/pact';return toast('Pact saved');}
+if(a=='submit'){e.st='PENDING_APPROVAL';lg('Submitted for approval',e,e.amt);return render();}
+if(a=='edit'){const m=modal('<h3>Edit '+e.name+'</h3><p class="mu">Changing an approved amount cancels the approval.</p><input id="na" class="num" value="'+(e.amt/100)+'" inputmode="decimal"><div class="err" id="er"></div><p style="display:flex;gap:8px;justify-content:flex-end;margin:16px 0 0"><button class="btn" id="x">Cancel</button><button class="btn p" id="ok">Save change</button></p>');
+m.querySelector('#x').onclick=()=>m.remove();m.querySelector('#ok').onclick=()=>{const v=Math.round(parseFloat(m.querySelector('#na').value)*100);
+if(isNaN(v)||v<0)return m.querySelector('#er').textContent='Enter a valid, non-negative amount.';
+if(tot()-e.amt+v>S.budget)return m.querySelector('#er').textContent='Policy check failed: this would put planned spend '+$(tot()-e.amt+v-S.budget)+' over budget.';
+if(v==e.amt)return m.remove();const rp=S.budget-tot(),re=e.st=='APPROVED'||e.st=='PAYMENT_PENDING';
+S.last={name:e.name,p:e.amt,n:v,rp,rn:rp+e.amt-v,re};e.amt=v;if(re)e.st='REAPPROVAL_REQUIRED';lg(re?'Edited, approval invalidated':'Edited',e,v);m.remove();render();};return;}
+if(a=='approve'){const m=modal('<h3>Approve '+$(e.amt)+'?</h3><p class="mu">You’re approving <b>'+e.name+'</b> for exactly '+$(e.amt)+' USD. Any later change will need approval again.</p><p style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="x">Cancel</button><button class="btn p" id="ok">Approve</button></p>');
+m.querySelector('#x').onclick=()=>m.remove();m.querySelector('#ok').onclick=()=>{e.st='APPROVED';e.app=e.amt;lg('Approved by owner',e,e.amt);m.remove();render();toast('Approved');};return;}
+if(a=='pay'){const m=modal('<h3>Demo checkout</h3><p class="mu">This preview makes <b>no PayPal call</b>. In the full build the server creates an Orders v2 order for '+$(e.amt)+' and you approve it in PayPal Sandbox. The button below only simulates a capture.</p><p style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="x">Cancel</button><button class="btn p" id="ok">Simulate capture</button></p>');
+m.querySelector('#x').onclick=()=>m.remove();m.querySelector('#ok').onclick=()=>{e.st='COMPLETED';lg('Simulated capture (demo)',e,e.amt,'DEMO-'+Math.random().toString(36).slice(2,8).toUpperCase());m.remove();render();toast('Simulated capture recorded');};}
+});
+document.addEventListener('input',ev=>{const t=ev.target;if(!t.dataset.f||!PLAN)return;const x=PLAN.ex[t.dataset.i];if(t.dataset.f=='n')x.name=t.value;else x.amt=Math.max(0,Math.round(parseFloat(t.value||0)*100)||0);});
+document.addEventListener('change',ev=>{if(ev.target.dataset.f=='a')render();});
+
+let tm;function render(){const r=(location.hash.replace('#/','')||'').split('?')[0];const el=document.getElementById('app');
+const fn={app:dash,plan:planp,pact:pact,ledger:ledger,login:loginp}[r]||landing;el.innerHTML=fn();clearInterval(tm);window.scrollTo(0,0);
+if(fn==landing){let i=0;const sts=['DRAFT','PENDING_APPROVAL','APPROVED','PAYMENT_PENDING','COMPLETED'];const tick=()=>{const s=document.getElementById('dS');if(!s)return clearInterval(tm);s.innerHTML=badge(sts[i]);document.querySelectorAll('#dP span').forEach((x,k)=>x.classList.toggle('on',k<=i));i=(i+1)%5;};tick();tm=setInterval(tick,1700);}}
+addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>

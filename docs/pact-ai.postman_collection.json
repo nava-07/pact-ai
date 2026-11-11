@@ -1,0 +1,760 @@
+{
+ "info": {
+  "name": "Pact AI API",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "variable": [
+  {
+   "key": "baseUrl",
+   "value": "http://localhost:5000"
+  }
+ ],
+ "item": [
+  {
+   "name": "Register",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/auth/register",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "auth",
+      "register"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Asha\",\n  \"email\": \"asha@example.com\",\n  \"password\": \"password123\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Login",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/auth/login",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "auth",
+      "login"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"email\": \"asha@example.com\",\n  \"password\": \"password123\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Me",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/auth/me",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "auth",
+      "me"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Logout",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/auth/logout",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "auth",
+      "logout"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{}"
+    }
+   }
+  },
+  {
+   "name": "Create pact",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"title\": \"Goa weekend\",\n  \"budgetMinor\": 50000,\n  \"currency\": \"USD\"\n}"
+    }
+   }
+  },
+  {
+   "name": "List pacts",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts?limit=20",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts?limit=20"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Get pact",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Update pact",
+   "request": {
+    "method": "PATCH",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"title\": \"Goa trip\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Archive pact",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Add member",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId/members",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId",
+      "members"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"email\": \"dev@example.com\",\n  \"role\": \"MEMBER\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Change role",
+   "request": {
+    "method": "PATCH",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId/members/:userId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId",
+      "members",
+      ":userId"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"role\": \"APPROVER\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Add expense",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/pacts/:pactId/expenses",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "pacts",
+      ":pactId",
+      "expenses"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"purpose\": \"Transport\",\n  \"amountMinor\": 20000\n}"
+    }
+   }
+  },
+  {
+   "name": "Get expense",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Edit expense",
+   "request": {
+    "method": "PATCH",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"amountMinor\": 25000\n}"
+    }
+   }
+  },
+  {
+   "name": "Submit",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId/submit",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId",
+      "submit"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{}"
+    }
+   }
+  },
+  {
+   "name": "Approve",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId/approve",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId",
+      "approve"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"version\": 1\n}"
+    }
+   }
+  },
+  {
+   "name": "Reject",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId/reject",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId",
+      "reject"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{}"
+    }
+   }
+  },
+  {
+   "name": "Cancel",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/expenses/:expenseId/cancel",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "expenses",
+      ":expenseId",
+      "cancel"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{}"
+    }
+   }
+  },
+  {
+   "name": "PayPal create order",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/paypal/create-order",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "paypal",
+      "create-order"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"expenseId\": \"<id>\"\n}"
+    }
+   }
+  },
+  {
+   "name": "PayPal capture order",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/paypal/capture-order",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "paypal",
+      "capture-order"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"orderId\": \"<paypal order id>\"\n}"
+    }
+   }
+  },
+  {
+   "name": "PayPal reconcile",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/paypal/reconcile",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "paypal",
+      "reconcile"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"orderId\": \"<paypal order id>\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Payments",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/payments",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "payments"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Payment",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/payments/:paymentId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "payments",
+      ":paymentId"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Ledger",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/ledger?limit=20",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "ledger?limit=20"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Ledger entry",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/ledger/:eventId",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "ledger",
+      ":eventId"
+     ]
+    }
+   }
+  },
+  {
+   "name": "AI generate plan",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/ai/generate-plan",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "ai",
+      "generate-plan"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"prompt\": \"Two-day college trip for five people, budget $500, keep $50 for emergencies.\"\n}"
+    }
+   }
+  },
+  {
+   "name": "AI explain change",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/ai/explain-change",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "ai",
+      "explain-change"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"expenseId\": \"<id>\",\n  \"newAmountMinor\": 25000\n}"
+    }
+   }
+  },
+  {
+   "name": "AI copilot",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/ai/copilot",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "ai",
+      "copilot"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"message\": \"How much budget remains?\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Health",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{baseUrl}}/api/health",
+     "host": [
+      "{{baseUrl}}"
+     ],
+     "path": [
+      "api",
+      "health"
+     ]
+    }
+   }
+  }
+ ]
+}
